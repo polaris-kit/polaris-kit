@@ -1,0 +1,69 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { shadow } from "./shadows";
+
+<Meta title="Foundations/Shadows" />
+
+# Shadows
+
+Raw shadow scale exported by the `tokens` package.
+
+**Dark mode caveat:** every elevation shadow (`xs` through `2xl`, plus
+`inner`) is defined as `rgb(0 0 0 / alpha)`. Against a dark surface this
+reads as near-zero contrast — toggle the theme switcher above to see it
+for yourself on the cards below. If dark-mode elevation is expected to be
+visible, this token file will need a parallel dark scale (commonly lighter,
+higher-opacity shadows, or a "lift" via a subtle border/highlight instead
+of a shadow) rather than a single scale shared across themes.
+
+`focus` is semantically different from the rest — it's a focus ring
+(`rgb(59 130 246 / 0.45)`, a fixed blue), not an elevation shadow, so it
+isn't theme-dependent in the same way.
+
+## Elevation scale
+
+{Object.entries(shadow)
+.filter(([key]) => key !== 'focus')
+.map(([key, value]) => (
+
+<div
+key={key}
+style={{
+        display: 'inline-flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 8,
+        margin: '0 32px 48px 0',
+      }} >
+<div
+style={{
+          width: 96,
+          height: 64,
+          borderRadius: 8,
+          background: 'var(--polaris-docs-card-bg)',
+          boxShadow: value,
+        }}
+/>
+<code style={{ fontSize: 12, color: 'var(--polaris-docs-text-subtle)' }}>shadow.{key}</code>
+</div>
+))}
+
+## Focus ring
+
+Rendered on an element with a visible border so the ring's offset from the
+edge is clear, independent of the elevation scale above.
+
+<div
+	style={{
+		width: 96,
+		height: 40,
+		borderRadius: 8,
+		background: "var(--polaris-docs-card-bg)",
+		border: "1px solid var(--polaris-docs-border)",
+		boxShadow: shadow.focus,
+		margin: "0 0 16px 4px",
+	}}
+/>
+
+<code style={{ fontSize: 12, color: "var(--polaris-docs-text-subtle)" }}>
+	shadow.focus
+</code>

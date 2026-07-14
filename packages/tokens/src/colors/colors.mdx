@@ -1,0 +1,53 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/addon-docs/blocks";
+import { colors } from "./colors";
+
+<Meta title="Foundations/Colors" />
+
+# Colors
+
+Raw color tokens exported by the `tokens` package. These are the source of
+truth for every scale used across Polaris UI. Components should never
+import these directly — themes are responsible for mapping them to CSS
+variables.
+
+Click any swatch below to copy its hex value.
+
+## Solid values
+
+`transparent` and `current` are omitted from the swatch grid below since
+neither renders meaningfully as a static color:
+
+- **`transparent`** (`transparent`) — has no visible fill by definition.
+- **`current`** (`currentColor`) — resolves to the `color` of whichever
+  element consumes it, so its rendered value depends entirely on context.
+
+<ColorPalette>
+	<ColorItem
+		title="black"
+		subtitle="colors.black"
+		colors={{ black: colors.black }}
+	/>
+	<ColorItem
+		title="white"
+		subtitle="colors.white"
+		colors={{ white: colors.white }}
+	/>
+</ColorPalette>
+
+## Scales
+
+{Object.entries(colors)
+.filter(([, value]) => typeof value === 'object')
+.map(([name, scale]) => (
+
+<div key={name}>
+<h3 style={{ textTransform: 'capitalize' }}>{name}</h3>
+<ColorPalette>
+<ColorItem
+title={name}
+subtitle={`colors.${name}`}
+colors={scale}
+/>
+</ColorPalette>
+</div>
+))}

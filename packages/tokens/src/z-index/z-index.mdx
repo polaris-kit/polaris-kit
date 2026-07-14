@@ -1,0 +1,182 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { zIndex } from "./z-index";
+
+<Meta title="Foundations/Z-Index" />
+
+# Z-Index
+
+Raw layer scale exported by the `tokens` package.
+
+`auto` is intentionally excluded from the stack demo below: it means "no
+explicit stacking context — falls back to normal DOM paint order", which
+isn't a fixed layer that can be meaningfully compared against numeric
+values. It's documented separately at the bottom.
+
+## All tokens
+
+<table style={{ borderCollapse: "collapse", width: 280 }}>
+	<thead>
+		<tr>
+			<th
+				style={{
+					textAlign: "left",
+					fontSize: 12,
+					padding: "6px 12px",
+					borderBottom: "1px solid var(--polaris-docs-border)",
+					color: "var(--polaris-docs-text-subtle)",
+				}}
+			>
+				Token
+			</th>
+			<th
+				style={{
+					textAlign: "left",
+					fontSize: 12,
+					padding: "6px 12px",
+					borderBottom: "1px solid var(--polaris-docs-border)",
+					color: "var(--polaris-docs-text-subtle)",
+				}}
+			>
+				Value
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		{Object.entries(zIndex).map(([key, value]) => (
+			<tr key={key}>
+				<td
+					style={{
+						padding: "6px 12px",
+						borderBottom: "1px solid var(--polaris-docs-border)",
+					}}
+				>
+					<code style={{ fontSize: 12, color: "var(--polaris-docs-text)" }}>
+						zIndex.{key}
+					</code>
+				</td>
+				<td
+					style={{
+						padding: "6px 12px",
+						borderBottom: "1px solid var(--polaris-docs-border)",
+					}}
+				>
+					<code style={{ fontSize: 12, color: "var(--polaris-docs-text)" }}>
+						{value}
+					</code>
+				</td>
+			</tr>
+		))}
+	</tbody>
+</table>
+
+## Stack order
+
+Each box is rendered in the DOM in **reverse** scale order (`toast` first,
+`hide` last) — if `z-index` weren't doing anything, later elements would
+naturally paint on top and `hide` would appear frontmost. Instead, the
+scale value alone determines what actually ends up on top.
+
+{(() => {
+const layers = Object.entries(zIndex).filter(([key]) => key !== 'auto')
+const domOrder = [...layers].reverse()
+
+return (
+
+<div
+style={{
+        position: 'relative',
+        height: 72 + layers.length * 20,
+        marginBottom: 24,
+      }} >
+{domOrder.map(([key, value]) => {
+		const position = layers.findIndex(([k]) => k === key)
+		return (
+			<div
+				key={key}
+				style={{
+					position: 'absolute',
+					top: position * 20,
+					left: position * 32,
+					zIndex: value,
+					width: 180,
+              height: 56,
+              borderRadius: 8,
+              border: '1px solid var(--polaris-docs-border)',
+              background: 'var(--polaris-docs-card-bg)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '0 12px',
+              boxShadow: '0 4px 10px rgb(0 0 0 / 0.15)',
+            }} >
+				<code style={{ fontSize: 12,  color: 'var(--polaris-docs-text)' }}>zIndex.{key}</code>
+				<code style={{ fontSize: 12, color: 'var(--polaris-docs-text-subtle)' }}>
+				{value}
+				</code>
+			</div>
+		)
+	})}
+</div>
+)
+})()}
+
+Note on `hide` (`-1`): it renders _behind the container's own background_,
+not just behind its siblings — a negative z-index sits below the stacking
+context's own painted layers. That's the intended behavior for a token
+named `hide`, not a rendering bug in this demo.
+
+## `auto`
+
+Equivalent to omitting `z-index` entirely — the element participates in
+normal DOM paint order relative to its siblings, with no explicit stacking
+context of its own. Use it to intentionally opt an element out of the
+scale above, rather than to represent "layer zero" (that's what `base`
+is for).
+
+The demo below has no `z-index` set on either box — unlike the stack
+above, here DOM order is the _only_ thing deciding what's on top. The box
+rendered later in markup (labeled accordingly) simply paints over the
+earlier one.
+
+<div style={{ position: "relative", height: 96, marginBottom: 24 }}>
+	<div
+		style={{
+			position: "absolute",
+			top: 0,
+			left: 0,
+			width: 180,
+			height: 56,
+			borderRadius: 8,
+			color: "var(--polaris-docs-text)",
+			border: "1px solid var(--polaris-docs-border)",
+			background: "var(--polaris-docs-card-bg)",
+			display: "flex",
+			alignItems: "center",
+			padding: "0 12px",
+		}}
+	>
+		<code style={{ fontSize: 12 }}>First in DOM</code>
+	</div>
+	<div
+		style={{
+			position: "absolute",
+			top: 40,
+			left: 32,
+			width: 180,
+			height: 56,
+			borderRadius: 8,
+			color: "var(--polaris-docs-text)",
+			border: "1px solid var(--polaris-docs-border)",
+			background: "var(--polaris-docs-card-bg)",
+			display: "flex",
+			alignItems: "center",
+			padding: "0 12px",
+		}}
+	>
+		<code style={{ fontSize: 12 }}>Later in DOM</code>
+	</div>
+</div>
+
+No `zIndex.auto` value is applied above — the outcome ("Later in DOM" on
+top) comes entirely from markup order, which is exactly what `auto` opts
+an element into.

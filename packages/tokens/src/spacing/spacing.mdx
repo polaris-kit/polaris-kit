@@ -1,0 +1,91 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+import { spacing, space } from '../spacing'
+
+<Meta title="Foundations/Spacing" />
+
+# Spacing
+
+Raw spacing scale exported by the `tokens` package, plus semantic aliases
+(`space`) for when a numeric scale reference isn't desirable at the call
+site.
+
+Bar widths below assume a `16px` root font-size (the browser default) to
+convert `rem` → `px` for display purposes only — the actual rendered size
+always depends on the root `font-size` in effect at runtime.
+
+## Numeric scale
+
+{Object.entries(spacing).map(([key, value]) => {
+  const px = parseFloat(value) * 16
+  return (
+    <div
+      key={key}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 12,
+        marginBottom: 6,
+      }}
+    >
+      <code style={{ width: 48, fontSize: 12, textAlign: 'right', color: 'var(--polaris-docs-text-subtle)' }}>
+        {key}
+      </code>
+      <div
+        style={{
+          height: 16,
+          width: `${px}px`,
+          minWidth: px > 0 ? 2 : 0,
+          background: 'var(--polaris-docs-accent, #3B82F6)',
+          borderRadius: 2,
+        }}
+      />
+      <code style={{ fontSize: 12, color: 'var(--polaris-docs-text-subtle)' }}>
+        {value} ({px}px)
+      </code>
+    </div>
+  )
+})}
+
+## Semantic aliases
+
+Each alias resolves to one of the numeric tokens above. The mapping is
+looked up at render time, so this table can't drift from the real values
+in `space`.
+
+{(() => {
+  const reverseLookup = Object.fromEntries(
+    Object.entries(spacing).map(([key, value]) => [value, key]),
+  )
+
+  return Object.entries(space).map(([name, value]) => {
+    const px = parseFloat(value) * 16
+    const numericKey = reverseLookup[value] ?? '—'
+    return (
+      <div
+        key={name}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 12,
+          marginBottom: 6,
+        }}
+      >
+        <code style={{ width: 48, fontSize: 12, textAlign: 'right', color: 'var(--polaris-docs-text-subtle)' }}>
+          {name}
+        </code>
+        <div
+          style={{
+            height: 16,
+            width: `${px}px`,
+            minWidth: px > 0 ? 2 : 0,
+            background: 'var(--polaris-docs-accent, #3B82F6)',
+            borderRadius: 2,
+          }}
+        />
+        <code style={{ fontSize: 12, color: 'var(--polaris-docs-text-subtle)' }}>
+          {value} ({px}px) → spacing[{numericKey}]
+        </code>
+      </div>
+    )
+  })
+})()}

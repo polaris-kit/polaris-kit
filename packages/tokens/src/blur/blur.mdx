@@ -1,0 +1,103 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { blur, backdropBlur } from "../blur";
+
+<Meta title="Foundations/Blur" />
+
+# Blur
+
+Raw blur tokens exported by the `tokens` package: `blur` (`filter: blur()`,
+applied to an element's own content) and `backdropBlur`
+(`backdrop-filter: blur()`, applied to whatever sits behind the element).
+
+## `blur` — filter
+
+A flat color swatch would look identical blurred or not, so each sample
+below has visible detail (a striped pattern) for the blur to act on.
+
+{Object.entries(blur).map(([key, value]) => (
+
+  <div
+    key={key}
+    style={{
+      display: 'inline-flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: 8,
+      margin: '0 24px 32px 0',
+    }}
+  >
+    <div
+      style={{
+        width: 96,
+        height: 72,
+        borderRadius: 8,
+        overflow: 'hidden',
+        backgroundImage:
+          'repeating-linear-gradient(45deg, var(--polaris-docs-accent, #3B82F6) 0 8px, transparent 8px 16px)',
+        filter: `blur(${value})`,
+      }}
+    />
+    <code style={{ fontSize: 12, color: 'var(--polaris-docs-text-subtle)' }}>blur.{key}</code>
+    <code style={{ fontSize: 12, color: 'var(--polaris-docs-text-subtle)' }}>
+      {value}
+    </code>
+  </div>
+))}
+
+## `backdropBlur` — backdrop-filter
+
+Each box shows the same striped background split in half: the left side
+is untouched, the right side sits behind a semi-transparent panel with
+`backdrop-filter` applied — the "frosted glass" effect only shows up
+through that translucency, so a fully opaque panel would hide it entirely.
+
+Values correspond directly to a subset of the `blur` scale above — the
+`(→ blur.x)` reference makes that mapping explicit rather than implicit.
+
+Note: `backdrop-filter` needs the `-webkit-` prefix for older Safari; not
+handled in these inline demo styles, but relevant for real component
+implementations.
+
+{(() => {
+const reverseLookup = Object.fromEntries(
+Object.entries(blur).map(([key, value]) => [value, key]),
+)
+
+return Object.entries(backdropBlur).map(([key, value]) => (
+
+<div
+key={key}
+style={{
+        display: 'inline-flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 8,
+        margin: '0 24px 32px 0',
+      }} >
+<div
+style={{
+          position: 'relative',
+          width: 160,
+          height: 72,
+          borderRadius: 8,
+          overflow: 'hidden',
+          backgroundImage:
+            'repeating-linear-gradient(45deg, var(--polaris-docs-accent, #3B82F6) 0 8px, transparent 8px 16px)',
+        }} >
+<div
+style={{
+            position: 'absolute',
+            inset: '0 0 0 50%',
+            backdropFilter: `blur(${value})`,
+            WebkitBackdropFilter: `blur(${value})`,
+            background: 'rgba(255, 255, 255, 0.15)',
+          }}
+/>
+</div>
+<code style={{ fontSize: 12, color: 'var(--polaris-docs-text-subtle)' }}>backdropBlur.{key}</code>
+<code style={{ fontSize: 12, color: 'var(--polaris-docs-text-subtle)' }}>
+{value} (→ blur.{reverseLookup[value] ?? '—'})
+</code>
+</div>
+))
+})()}

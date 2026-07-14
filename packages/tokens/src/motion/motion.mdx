@@ -1,0 +1,105 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { useState } from "react";
+import { duration, easing } from "../motion";
+
+<Meta title="Foundations/Motion" />
+
+# Motion
+
+Raw duration and easing tokens exported by the `tokens` package. Click
+"Play" on any row to trigger the transition — duration/easing only mean
+something in motion, a static swatch can't represent them.
+
+`duration.instant` (`0ms`) intentionally shows no visible motion — that's
+correct, not a bug in the demo.
+
+export function MotionDemo({ label, sublabel, transition }) {
+  const [moved, setMoved] = useState(false)
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 16,
+        marginBottom: 16,
+      }}
+    >
+      <button
+        onClick={() => setMoved((v) => !v)}
+        style={{
+          fontSize: 12,
+          padding: '4px 10px',
+          borderRadius: 6,
+          border: '1px solid var(--polaris-docs-border)',
+          background: 'var(--polaris-docs-card-bg)',
+          color: 'var(--polaris-docs-text)',
+          cursor: 'pointer',
+        }}
+      >
+        Play
+      </button>
+
+      <div
+        style={{
+          position: 'relative',
+          width: 240,
+          height: 40,
+          border: '1px solid var(--polaris-docs-border)',
+          borderRadius: 8,
+          flexShrink: 0,
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            top: 4,
+            left: moved ? 204 : 4,
+            width: 32,
+            height: 32,
+            borderRadius: 6,
+            background: 'var(--polaris-docs-accent, #3B82F6)',
+            transition,
+          }}
+        />
+      </div>
+
+      <code style={{ fontSize: 12, color: 'var(--polaris-docs-text-subtle)' }}>{label}</code>
+
+      {sublabel && (
+        <code style={{ fontSize: 12, color: 'var(--polaris-docs-text-subtle)' }}>
+          {sublabel}
+        </code>
+      )}
+    </div>
+  )
+}
+
+## Duration
+
+Fixed easing (`easing.standard`) so only the duration changes between rows.
+
+{Object.entries(duration).map(([key, value]) => (
+
+  <MotionDemo
+    key={key}
+    label={`duration.${key}`}
+    sublabel={value}
+    transition={`left ${value} ${easing.standard}`}
+  />
+))}
+
+## Easing
+
+Fixed duration (`duration.slow`, `500ms`) so only the curve changes between
+rows — long enough to make the acceleration/deceleration profile visible.
+
+{Object.entries(easing).map(([key, value]) => (
+
+  <MotionDemo
+    key={key}
+    label={`easing.${key}`}
+    sublabel={value}
+    transition={`left ${duration.slow} ${value}`}
+  />
+))}

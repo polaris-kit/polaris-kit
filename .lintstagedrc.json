@@ -1,0 +1,4 @@
+{
+  "*.{ts,tsx,js,jsx}": ["oxlint", "oxfmt"],
+  "*.{json,md,css}": ["oxfmt"]
+}

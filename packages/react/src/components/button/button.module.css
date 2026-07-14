@@ -1,0 +1,178 @@
+.button {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  gap: var(--space-2);
+
+  font-family: var(--font-sans, sans-serif);
+  font-weight: 600;
+
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+
+  outline: none;
+
+  transition:
+    transform var(--duration-fast) var(--easing-standard),
+    background var(--duration-fast) var(--easing-standard),
+    box-shadow var(--duration-fast) var(--easing-standard);
+
+  cursor: pointer;
+}
+
+.button:disabled {
+  opacity: var(--opacity-50);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.button:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--color-background),
+    0 0 0 4px var(--color-primary);
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+/* ------------------------ */
+/* Content */
+/* ------------------------ */
+
+.content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: inherit;
+
+  transition: opacity var(--duration-fast) var(--easing-standard);
+}
+
+.loading .content {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+.spinnerWrapper {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+/* ------------------------ */
+/* Variants */
+/* ------------------------ */
+
+.solid {
+  background: var(--button-bg);
+  color: var(--button-fg);
+  box-shadow: var(--shadow-md);
+}
+
+.solid:hover,
+.solid:active,
+.solid:focus-visible {
+  background: var(--button-bg-hover);
+  box-shadow: var(--shadow-lg);
+}
+
+.outline {
+  background: transparent;
+  border-color: var(--button-border);
+  color: var(--button-border);
+}
+
+.outline:hover,
+.outline:active,
+.outline:focus-visible {
+  background: color-mix(in srgb, var(--button-border), transparent 85%);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--button-bg);
+}
+
+.ghost:hover {
+  background: color-mix(in srgb, var(--button-bg), transparent 85%);
+}
+
+/* ------------------------ */
+/* Sizes */
+/* ------------------------ */
+
+.sm {
+  height: 2rem;
+  padding: 0 var(--space-3);
+  font-size: var(--font-size-sm);
+}
+
+.md {
+  height: 2.5rem;
+  padding: 0 var(--space-4);
+  font-size: var(--font-size-sm);
+}
+
+.lg {
+  height: 3rem;
+  padding: 0 var(--space-6);
+  font-size: var(--font-size-md);
+}
+
+/* ------------------------ */
+/* Colors */
+/* ------------------------ */
+
+.primary {
+  --button-bg: var(--color-primary);
+  --button-bg-hover: var(--color-primary-hover);
+  --button-fg: var(--color-primary-foreground);
+  --button-border: var(--color-primary);
+}
+
+.secondary {
+  --button-bg: var(--color-secondary);
+  --button-bg-hover: var(--color-secondary-hover);
+  --button-fg: var(--color-secondary-foreground);
+  --button-border: var(--color-secondary);
+}
+
+.success {
+  --button-bg: var(--color-success);
+  --button-bg-hover: var(--color-success-hover);
+  --button-fg: var(--color-success-foreground);
+  --button-border: var(--color-success);
+}
+
+.warning {
+  --button-bg: var(--color-warning);
+  --button-bg-hover: var(--color-warning-hover);
+  --button-fg: var(--color-warning-foreground);
+  --button-border: var(--color-warning);
+}
+
+.danger {
+  --button-bg: var(--color-danger);
+  --button-bg-hover: var(--color-danger-hover);
+  --button-fg: var(--color-danger-foreground);
+  --button-border: var(--color-danger);
+}

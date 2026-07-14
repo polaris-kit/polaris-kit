@@ -1,0 +1,56 @@
+.text {
+  margin: 0;
+  font-family: var(--font-sans, sans-serif);
+  color: var(--color-foreground);
+}
+
+/* Sizes */
+.xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.md {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+/* Weights */
+.normal {
+  font-weight: 400;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+/* Align */
+.left {
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}

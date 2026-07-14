@@ -1,0 +1,142 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks'
+import { useState } from 'react'
+
+<Meta title="Overview/Installation" />
+
+# Installation
+
+export function CodeTabs({ options, render, language = 'bash' }) {
+  const [active, setActive] = useState(options[0])
+
+  return (
+    <div style={{ marginBottom: 24 }}>
+      <div style={{ display: 'flex', gap: 4, marginBottom: 8 }}>
+        {options.map((option) => (
+          <button
+            key={option}
+            onClick={() => setActive(option)}
+            style={{
+              fontSize: 12,
+              padding: '6px 12px',
+              borderRadius: 6,
+              border: '1px solid var(--polaris-docs-border)',
+              background:
+                active === option
+                  ? 'var(--polaris-docs-accent, #3B82F6)'
+                  : 'var(--polaris-docs-card-bg)',
+              color:
+                active === option ? 'var(--polaris-docs-card-bg)' : 'var(--polaris-docs-text)',
+              cursor: 'pointer',
+              fontWeight: active === option ? 600 : 400,
+            }}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+      <Source dark={true} code={render(active)} language={language} />
+    </div>
+  )
+}
+
+## Package manager
+
+Installs `@polaris-ui/react` along with its required peer dependencies
+(`@polaris-ui/themes`, `@polaris-ui/tokens`), which the package manager
+resolves automatically as transitive dependencies.
+
+<CodeTabs
+  options={['npm', 'yarn', 'pnpm']}
+  language="bash"
+  render={(pm) => {
+    switch (pm) {
+      case 'npm':
+        return 'npm install @polaris-ui/react'
+      case 'yarn':
+        return 'yarn add @polaris-ui/react'
+      case 'pnpm':
+        return 'pnpm add @polaris-ui/react'
+    }
+  }}
+/>
+
+**Peer dependencies:** requires `react` and `react-dom` ^18 (or the range
+your package actually targets — confirm this against `react`'s
+`peerDependencies` before publishing this page, the value above is
+assumed, not confirmed).
+
+## Framework setup
+
+Installation is identical across frameworks — what differs is *where* the
+theme gets initialized. Every consumer needs to call
+`applyFoundationTokens()` once, then `applyTheme()` with the desired theme
+object, before any Polaris component renders.
+
+<CodeTabs
+  options={['Vite',  'React (CRA / plain)', 'Next.js (App Router)',]}
+  language="tsx"
+  render={(framework) => {
+    switch (framework) {
+      case 'Vite':
+        return `// src/main.tsx
+import { createRoot } from 'react-dom/client'
+import { applyFoundationTokens, applyTheme, lightTheme } from '@polaris-ui/themes'
+import App from './App'
+
+applyFoundationTokens()
+applyTheme(lightTheme)
+
+createRoot(document.getElementById('root')!).render(<App />)`
+      case 'Next.js (App Router)':
+        return `// app/theme-init.ts
+'use client'
+import { useEffect } from 'react'
+import { applyFoundationTokens, applyTheme, lightTheme } from '@polaris-ui/themes'
+
+export function ThemeInit() {
+  useEffect(() => {
+    applyFoundationTokens()
+    applyTheme(lightTheme)
+  }, [])
+
+  return null
+}
+
+// app/layout.tsx
+import { ThemeInit } from './theme-init'
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <ThemeInit />
+        {children}
+      </body>
+    </html>
+  )
+}`
+      case 'React (CRA / plain)':
+        return `// src/index.tsx
+import { createRoot } from 'react-dom/client'
+import { applyFoundationTokens, applyTheme, lightTheme } from '@polaris-ui/themes'
+import App from './App'
+
+applyFoundationTokens()
+applyTheme(lightTheme)
+
+const root = createRoot(document.getElementById('root')!)
+root.render(<App />)`
+    }
+  }}
+/>
+
+**Next.js note:** `applyTheme`/`applyFoundationTokens` mutate CSS custom
+properties on `document`, so they can't run during server rendering — the
+`'use client'` + `useEffect` wrapper above is there specifically to defer
+the call to the browser.
+
+> **Planned change:** a React Context-based `ThemeProvider` is planned for
+> a future release. Once it ships, this page should be rewritten around
+> it instead of the imperative `applyTheme()` calls above — a
+> Provider-based API is SSR-safe by construction, so the Next.js caveat
+> above would likely no longer apply.

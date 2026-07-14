@@ -1,0 +1,35 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { radius } from "./radius";
+
+<Meta title="Foundations/Radius" />
+
+# Border Radius
+
+Raw border-radius scale exported by the `tokens` package.
+
+{Object.entries(radius).map(([key, value]) => (
+
+  <div
+    key={key}
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 16,
+      marginBottom: 12,
+    }}
+  >
+    <div
+      style={{
+        width: 64,
+        height: 64,
+        borderRadius: value,
+        background: 'var(--polaris-docs-accent, #3B82F6)',
+        flexShrink: 0,
+      }}
+    />
+    <code style={{ width: 56, fontSize: 12, color: 'var(--polaris-docs-text-subtle)' }}>{key}</code>
+    <code style={{ fontSize: 12, color: 'var(--polaris-docs-text-subtle)' }}>
+      {value}
+    </code>
+  </div>
+))}

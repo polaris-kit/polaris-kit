@@ -1,0 +1,7 @@
+/* Preview container (Canvas) */
+html,
+body,
+#storybook-root {
+  background: var(--color-background);
+  color: var(--color-foreground);
+}

@@ -1,0 +1,53 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { opacity } from "./opacity";
+
+<Meta title="Foundations/Opacity" />
+
+# Opacity
+
+Raw opacity scale exported by the `tokens` package.
+
+Each swatch sits on a checkerboard backdrop rather than the docs card
+background — against a solid background, low-opacity values (`0`, `5`,
+`10`) would be visually indistinguishable from "no color at all", since
+the swatch and background could end up rendering close to the same
+apparent color depending on the active theme.
+
+{Object.entries(opacity).map(([key, value]) => (
+
+  <div
+    key={key}
+    style={{
+      display: 'inline-flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: 8,
+      margin: '0 24px 32px 0',
+    }}
+  >
+    <div
+      style={{
+        width: 72,
+        height: 72,
+        borderRadius: 8,
+        backgroundImage:
+          'conic-gradient(var(--polaris-docs-border) 90deg, transparent 90deg 180deg, var(--polaris-docs-border) 180deg 270deg, transparent 270deg)',
+        backgroundSize: '16px 16px',
+      }}
+    >
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          borderRadius: 8,
+          background: 'var(--polaris-docs-accent, #3B82F6)',
+          opacity: value,
+        }}
+      />
+    </div>
+    <code style={{ fontSize: 12 }}>opacity.{key}</code>
+    <code style={{ fontSize: 12, color: 'var(--polaris-docs-text-subtle)' }}>
+      {value}
+    </code>
+  </div>
+))}

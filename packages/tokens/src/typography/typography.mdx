@@ -1,0 +1,120 @@
+import { Meta, Typeset } from "@storybook/addon-docs/blocks";
+import {
+	fontFamily,
+	fontSize,
+	fontWeight,
+	lineHeight,
+	letterSpacing,
+} from "../typography";
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+Raw typography tokens exported by the `tokens` package. Themes/components
+should consume these via the `typography` object, not the individual named
+exports, unless a specific sub-token is needed in isolation.
+
+## Font family
+
+{Object.entries(fontFamily).map(([name, stack]) => (
+
+  <div key={name} style={{ marginBottom: 24 }}>
+    <p style={{ fontSize: 12, color: 'var(--polaris-docs-text-subtle)', marginBottom: 4 }}>
+      <code>fontFamily.{name}</code> — <code>{stack}</code>
+    </p>
+    <p style={{ fontFamily: stack, fontSize: '1.5rem', margin: 0 }}>
+      The quick brown fox jumps over the lazy dog
+    </p>
+  </div>
+))}
+
+## Font size
+
+Rendered with `fontFamily.sans`. Only the numeric scale is shown here —
+weight and line-height are documented separately below since they're
+independent axes.
+
+<Typeset
+	fontSizes={Object.values(fontSize)}
+	fontFamily={fontFamily.sans}
+	sampleText="Aa Bb Cc — 0123456789"
+	style={{ color: "var(--polaris-docs-text)" }}
+/>
+
+{Object.entries(fontSize).map(([name, value]) => (
+
+  <p key={name} style={{ fontSize: 11, color: 'var(--polaris-docs-text-subtle)', margin: '2px 0' }}>
+    <code>fontSize.{name}</code> — <code>{value}</code>
+  </p>
+))}
+
+## Font weight
+
+No dedicated addon-docs block covers weight, so each value is rendered
+directly at `fontSize.xl` for comparison.
+
+{Object.entries(fontWeight).map(([name, value]) => (
+
+  <p
+    key={name}
+    style={{
+      fontFamily: fontFamily.sans,
+      fontSize: fontSize.xl,
+      fontWeight: value,
+      margin: '8px 0',
+    }}
+  >
+    fontWeight.{name} ({value}) — The quick brown fox
+  </p>
+))}
+
+## Line height
+
+Rendered as a two-line paragraph so the spacing between lines is visible;
+background alternates per line to make the boundary clear.
+
+{Object.entries(lineHeight).map(([name, value]) => (
+
+  <div key={name} style={{ marginBottom: 20 }}>
+    <p style={{ fontSize: 12, color: 'var(--polaris-docs-text-subtle)', marginBottom: 4 }}>
+      <code>lineHeight.{name}</code> — <code>{value}</code>
+    </p>
+    <p
+      style={{
+        fontFamily: fontFamily.sans,
+        fontSize: fontSize.base,
+        lineHeight: value,
+        background:
+          'repeating-linear-gradient(var(--polaris-docs-card-bg), var(--polaris-docs-card-bg) calc(1em * ' +
+          value +
+          '), var(--polaris-docs-border) calc(1em * ' +
+          value +
+          '), var(--polaris-docs-border) calc(1em * ' +
+          value +
+          ' + 1px))',
+        margin: 0,
+        maxWidth: 480,
+      }}
+    >
+      The quick brown fox jumps over the lazy dog near the riverbank at dawn.
+    </p>
+  </div>
+))}
+
+## Letter spacing
+
+{Object.entries(letterSpacing).map(([name, value]) => (
+
+  <p
+    key={name}
+    style={{
+      fontFamily: fontFamily.sans,
+      fontSize: fontSize.lg,
+      letterSpacing: value,
+      margin: '10px 0',
+    }}
+  >
+    letterSpacing.{name} ({value}) — THE QUICK BROWN FOX
+  </p>
+))}
