@@ -11,15 +11,15 @@
     "react",
     "ui"
   ],
-  "homepage": "https://github.com/mateusneiva/polaris-ui#readme",
+  "homepage": "https://github.com/polaris-kit/polaris-kit#readme",
   "bugs": {
-    "url": "https://github.com/mateusneiva/polaris-ui/issues"
+    "url": "https://github.com/polaris-kit/polaris-kit/issues"
   },
   "license": "MIT",
   "author": "Mateus Neiva",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mateusneiva/polaris-ui.git",
+    "url": "git+https://github.com/polaris-kit/polaris-kit.git",
     "directory": "packages/react"
   },
   "files": [
