@@ -1,18 +1,55 @@
 {
   "name": "@polaris-ui/themes",
   "version": "1.0.0",
-  "private": true,
-  "main": "./src/index.ts",
+  "description": "Theme engine and light/dark themes for Polaris UI, mapping design tokens to CSS variables.",
+  "keywords": [
+    "css-variables",
+    "design-system",
+    "polaris-ui",
+    "themes",
+    "theming",
+    "ui"
+  ],
+  "homepage": "https://github.com/mateusneiva/polaris-ui#readme",
+  "bugs": {
+    "url": "https://github.com/mateusneiva/polaris-ui/issues"
+  },
+  "license": "MIT",
+  "author": "Mateus Neiva",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mateusneiva/polaris-ui.git",
+    "directory": "packages/themes"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "build": "tsc -b",
-    "dev": "tsc -w"
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "@polaris-ui/tokens": "workspace:*"
   },
   "devDependencies": {
-    "@storybook/react": "10.4.6",
     "react": "19.2.7",
+    "tsup": "8.0.0",
     "typescript": "6.0.3"
   }
 }

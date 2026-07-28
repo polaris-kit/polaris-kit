@@ -1,22 +1,52 @@
 {
   "name": "@polaris-ui/react",
   "version": "1.0.0",
-  "private": true,
+  "description": "Modern, composable and accessible React component library for Polaris UI.",
+  "keywords": [
+    "accessible",
+    "component-library",
+    "components",
+    "design-system",
+    "polaris-ui",
+    "react",
+    "ui"
+  ],
+  "homepage": "https://github.com/mateusneiva/polaris-ui#readme",
+  "bugs": {
+    "url": "https://github.com/mateusneiva/polaris-ui/issues"
+  },
+  "license": "MIT",
+  "author": "Mateus Neiva",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mateusneiva/polaris-ui.git",
+    "directory": "packages/react"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     },
     "./styles.css": "./dist/index.css"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "@radix-ui/react-slot": "1.1.0"
@@ -29,7 +59,7 @@
     "typescript": "6.0.3"
   },
   "peerDependencies": {
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": ">=18",
+    "react-dom": ">=18"
   }
 }

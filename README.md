@@ -1,6 +1,6 @@
 # ✨ Polaris UI
 
-[![npm version](https://img.shields.io/npm/v/@polaris-ui/ui.svg)](https://www.npmjs.com/package/@polaris-ui/ui)
+[![npm version](https://img.shields.io/npm/v/@polaris-ui/react.svg)](https://www.npmjs.com/package/@polaris-ui/react)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![Monorepo](https://img.shields.io/badge/monorepo-turborepo-black.svg)](https://turbo.build/repo)
@@ -16,7 +16,7 @@ A modern, composable and accessible React component library built for scalabilit
 ## ✨ Features
 
 - ⚡ Monorepo powered by **Turborepo**
-- 📦 Modular packages (`ui`, `icons`, `tokens`)
+- 📦 Modular packages (`react`, `tokens`, `themes`)
 - 🎨 Design system ready
 - 🧪 Testing with **Vitest**
 - 🧹 Linting with **Oxlint**
@@ -33,14 +33,11 @@ A modern, composable and accessible React component library built for scalabilit
 ```
 polaris-ui/
 ├── apps/
-│   ├── docs/
-│   └── playground/
+│   └── storybook/
 ├── packages/
-│   ├── ui/
-│   ├── icons/
+│   ├── react/
 │   ├── tokens/
-│   └── utils/
-├── tooling/
+│   └── themes/
 ├── turbo.json
 └── pnpm-workspace.yaml
 ```
@@ -58,10 +55,9 @@ pnpm dev
 
 ## 📦 Packages
 
-- `@polaris-ui/ui` → React components
-- `@polaris-ui/icons` → Icon system
+- `@polaris-ui/react` → React components
 - `@polaris-ui/tokens` → Design tokens
-- `@polaris-ui/utils` → Shared utilities
+- `@polaris-ui/themes` → Theme engine + light/dark themes
 
 ---
 

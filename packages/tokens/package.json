@@ -1,17 +1,54 @@
 {
   "name": "@polaris-ui/tokens",
   "version": "1.0.0",
-  "private": true,
-  "main": "./src/index.ts",
+  "description": "Design tokens for Polaris UI — colors, spacing, radius, typography, shadows, motion and more.",
+  "keywords": [
+    "design-system",
+    "design-tokens",
+    "polaris-ui",
+    "tokens",
+    "ui"
+  ],
+  "homepage": "https://github.com/mateusneiva/polaris-ui#readme",
+  "bugs": {
+    "url": "https://github.com/mateusneiva/polaris-ui/issues"
+  },
+  "license": "MIT",
+  "author": "Mateus Neiva",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mateusneiva/polaris-ui.git",
+    "directory": "packages/tokens"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "build": "tsc -b",
-    "dev": "tsc -w"
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "check-types": "tsc --noEmit"
   },
   "devDependencies": {
     "@storybook/react": "10.4.6",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "react": "19.2.7",
+    "tsup": "8.0.0",
     "typescript": "6.0.3"
   }
 }
