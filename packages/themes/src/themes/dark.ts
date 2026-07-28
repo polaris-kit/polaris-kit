@@ -1,4 +1,4 @@
-import { colors } from '@polaris-ui/tokens'
+import { colors } from '@polaris-kit/tokens'
 
 export const darkTheme = {
   colors: {

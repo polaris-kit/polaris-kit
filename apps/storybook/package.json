@@ -11,7 +11,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@polaris-ui/themes": "workspace:*",
+    "@polaris-kit/themes": "workspace:*",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "vite": "8.1.3"

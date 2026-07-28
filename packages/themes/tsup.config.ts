@@ -7,5 +7,5 @@ export default defineConfig({
   clean: true,
   sourcemap: true,
   treeshake: true,
-  external: ['@polaris-ui/tokens']
+  external: ['@polaris-kit/tokens']
 })

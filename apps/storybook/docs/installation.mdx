@@ -41,8 +41,8 @@ export function CodeTabs({ options, render, language = 'bash' }) {
 
 ## Package manager
 
-Installs `@polaris-ui/react` along with its required peer dependencies
-(`@polaris-ui/themes`, `@polaris-ui/tokens`), which the package manager
+Installs `@polaris-kit/react` along with its required peer dependencies
+(`@polaris-kit/themes`, `@polaris-kit/tokens`), which the package manager
 resolves automatically as transitive dependencies.
 
 <CodeTabs
@@ -51,11 +51,11 @@ resolves automatically as transitive dependencies.
   render={(pm) => {
     switch (pm) {
       case 'npm':
-        return 'npm install @polaris-ui/react'
+        return 'npm install @polaris-kit/react'
       case 'yarn':
-        return 'yarn add @polaris-ui/react'
+        return 'yarn add @polaris-kit/react'
       case 'pnpm':
-        return 'pnpm add @polaris-ui/react'
+        return 'pnpm add @polaris-kit/react'
     }
   }}
 />
@@ -80,7 +80,7 @@ object, before any Polaris component renders.
       case 'Vite':
         return `// src/main.tsx
 import { createRoot } from 'react-dom/client'
-import { applyFoundationTokens, applyTheme, lightTheme } from '@polaris-ui/themes'
+import { applyFoundationTokens, applyTheme, lightTheme } from '@polaris-kit/themes'
 import App from './App'
 
 applyFoundationTokens()
@@ -91,7 +91,7 @@ createRoot(document.getElementById('root')!).render(<App />)`
         return `// app/theme-init.ts
 'use client'
 import { useEffect } from 'react'
-import { applyFoundationTokens, applyTheme, lightTheme } from '@polaris-ui/themes'
+import { applyFoundationTokens, applyTheme, lightTheme } from '@polaris-kit/themes'
 
 export function ThemeInit() {
   useEffect(() => {
@@ -118,7 +118,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       case 'React (CRA / plain)':
         return `// src/index.tsx
 import { createRoot } from 'react-dom/client'
-import { applyFoundationTokens, applyTheme, lightTheme } from '@polaris-ui/themes'
+import { applyFoundationTokens, applyTheme, lightTheme } from '@polaris-kit/themes'
 import App from './App'
 
 applyFoundationTokens()

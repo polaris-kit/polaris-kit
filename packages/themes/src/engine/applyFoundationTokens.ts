@@ -13,7 +13,7 @@ import {
   fontWeight,
   lineHeight,
   letterSpacing
-} from '@polaris-ui/tokens'
+} from '@polaris-kit/tokens'
 
 import { flattenTokens } from '../internal/flattenTokens'
 import { applyVariables } from '../internal/applyVariables'

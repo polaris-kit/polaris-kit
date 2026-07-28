@@ -1,5 +1,5 @@
 {
-  "name": "@polaris-ui/themes",
+  "name": "@polaris-kit/themes",
   "version": "1.0.0",
   "description": "Theme engine and light/dark themes for Polaris UI, mapping design tokens to CSS variables.",
   "keywords": [
@@ -45,7 +45,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@polaris-ui/tokens": "workspace:*"
+    "@polaris-kit/tokens": "workspace:*"
   },
   "devDependencies": {
     "react": "19.2.7",

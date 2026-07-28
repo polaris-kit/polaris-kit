@@ -1,6 +1,6 @@
 # ✨ Polaris UI
 
-[![npm version](https://img.shields.io/npm/v/@polaris-ui/react.svg)](https://www.npmjs.com/package/@polaris-ui/react)
+[![npm version](https://img.shields.io/npm/v/@polaris-kit/react.svg)](https://www.npmjs.com/package/@polaris-kit/react)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![Monorepo](https://img.shields.io/badge/monorepo-turborepo-black.svg)](https://turbo.build/repo)
@@ -55,9 +55,9 @@ pnpm dev
 
 ## 📦 Packages
 
-- `@polaris-ui/react` → React components
-- `@polaris-ui/tokens` → Design tokens
-- `@polaris-ui/themes` → Theme engine + light/dark themes
+- `@polaris-kit/react` → React components
+- `@polaris-kit/tokens` → Design tokens
+- `@polaris-kit/themes` → Theme engine + light/dark themes
 
 ---
 

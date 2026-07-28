@@ -1,22 +1,22 @@
-# @polaris-ui/themes
+# @polaris-kit/themes
 
-Theme engine and ready-to-use light/dark themes for **Polaris UI**. Maps [`@polaris-ui/tokens`](https://www.npmjs.com/package/@polaris-ui/tokens) to CSS variables at runtime.
+Theme engine and ready-to-use light/dark themes for **Polaris UI**. Maps [`@polaris-kit/tokens`](https://www.npmjs.com/package/@polaris-kit/tokens) to CSS variables at runtime.
 
-[![npm version](https://img.shields.io/npm/v/@polaris-ui/themes.svg)](https://www.npmjs.com/package/@polaris-ui/themes)
+[![npm version](https://img.shields.io/npm/v/@polaris-kit/themes.svg)](https://www.npmjs.com/package/@polaris-kit/themes)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 ## Installation
 
 ```bash
-npm install @polaris-ui/themes
+npm install @polaris-kit/themes
 # or
-pnpm add @polaris-ui/themes
+pnpm add @polaris-kit/themes
 ```
 
 ## Usage
 
 ```ts
-import { applyTheme, lightTheme, darkTheme, createTheme } from '@polaris-ui/themes'
+import { applyTheme, lightTheme, darkTheme, createTheme } from '@polaris-kit/themes'
 
 applyTheme(lightTheme)
 ```

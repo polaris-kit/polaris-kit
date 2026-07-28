@@ -1,4 +1,4 @@
-import { darkTheme as PolarisDarkTheme, lightTheme as PolarisLightTheme } from '@polaris-ui/themes'
+import { darkTheme as PolarisDarkTheme, lightTheme as PolarisLightTheme } from '@polaris-kit/themes'
 
 type ThemeColors = typeof PolarisLightTheme.colors
 

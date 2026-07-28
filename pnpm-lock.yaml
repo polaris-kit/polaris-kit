@@ -44,7 +44,7 @@ importers:
 
   apps/storybook:
     dependencies:
-      '@polaris-ui/themes':
+      '@polaris-kit/themes':
         specifier: workspace:*
         version: link:../../packages/themes
       react:
@@ -139,7 +139,7 @@ importers:
 
   packages/themes:
     dependencies:
-      '@polaris-ui/tokens':
+      '@polaris-kit/tokens':
         specifier: workspace:*
         version: link:../tokens
     devDependencies:

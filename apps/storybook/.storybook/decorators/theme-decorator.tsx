@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useGlobals } from 'storybook/preview-api'
 import type { Decorator } from '@storybook/react-vite'
 
-import { applyFoundationTokens, applyTheme, lightTheme, darkTheme } from '@polaris-ui/themes'
+import { applyFoundationTokens, applyTheme, lightTheme, darkTheme } from '@polaris-kit/themes'
 
 interface PolarisGlobals {
   theme?: 'light' | 'dark'

@@ -1,5 +1,5 @@
 import { create } from 'storybook/theming'
-import { darkTheme as PolarisDarkTheme, lightTheme as PolarisLightTheme } from '@polaris-ui/themes'
+import { darkTheme as PolarisDarkTheme, lightTheme as PolarisLightTheme } from '@polaris-kit/themes'
 
 const shared = {
   brandTitle: 'Polaris UI',
