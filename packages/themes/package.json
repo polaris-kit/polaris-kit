@@ -1,6 +1,6 @@
 {
   "name": "@polaris-kit/themes",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Theme engine and light/dark themes for Polaris UI, mapping design tokens to CSS variables.",
   "keywords": [
     "css-variables",

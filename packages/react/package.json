@@ -1,6 +1,6 @@
 {
   "name": "@polaris-kit/react",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Modern, composable and accessible React component library for Polaris UI.",
   "keywords": [
     "accessible",
