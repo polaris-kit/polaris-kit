@@ -4,13 +4,15 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![Monorepo](https://img.shields.io/badge/monorepo-turborepo-black.svg)](https://turbo.build/repo)
-[![Chromatic](https://img.shields.io/badge/storybook-chromatic-ff4785.svg)](https://www.chromatic.com)
+[![Chromatic](https://img.shields.io/badge/storybook-chromatic-ff4785.svg)](https://main--6a6a03885409ae6257b04aac.chromatic.com)
 
 ---
 
 A modern, composable and accessible React component library built for scalability, performance and developer experience.
 
 > Built with a monorepo architecture using Turborepo, pnpm and Changesets.
+>
+> 📚 [Live documentation (Storybook)](https://main--6a6a03885409ae6257b04aac.chromatic.com)
 
 ---
 
@@ -58,7 +60,9 @@ Storybook (local docs):
 pnpm --filter polaris-storybook dev
 ```
 
-Documentation is published automatically to **Chromatic** on every push to `main`. After the first publish, pin the main branch URL from your Chromatic project (e.g. `https://main--<app-id>.chromatic.com`) and share it.
+Documentation is published automatically to **Chromatic** on every push to `main`:
+
+**→ [https://main--6a6a03885409ae6257b04aac.chromatic.com](https://main--6a6a03885409ae6257b04aac.chromatic.com)**
 
 ---
 
