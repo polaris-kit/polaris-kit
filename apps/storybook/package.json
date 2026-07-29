@@ -8,7 +8,8 @@
     "build": "storybook build",
     "lint": "oxlint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
     "@polaris-kit/themes": "workspace:*",
@@ -29,6 +30,7 @@
     "@vitejs/plugin-react": "6.0.3",
     "@vitest/browser-playwright": "4.1.9",
     "@vitest/coverage-v8": "4.1.9",
+    "chromatic": "18.1.0",
     "oxlint": "1.71.0",
     "playwright": "1.61.1",
     "storybook": "10.4.6",

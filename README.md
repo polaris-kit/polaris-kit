@@ -4,6 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![Monorepo](https://img.shields.io/badge/monorepo-turborepo-black.svg)](https://turbo.build/repo)
+[![Chromatic](https://img.shields.io/badge/storybook-chromatic-ff4785.svg)](https://www.chromatic.com)
 
 ---
 
@@ -51,6 +52,14 @@ pnpm install
 pnpm dev
 ```
 
+Storybook (local docs):
+
+```
+pnpm --filter polaris-storybook dev
+```
+
+Documentation is published automatically to **Chromatic** on every push to `main`. After the first publish, pin the main branch URL from your Chromatic project (e.g. `https://main--<app-id>.chromatic.com`) and share it.
+
 ---
 
 ## 📦 Packages
@@ -79,7 +88,8 @@ Every push to main:
 
 - Lint
 - Typecheck
-- Build
+- Build packages
+- Publish Storybook (Chromatic)
 - Release (Changesets)
 
 ---
@@ -87,7 +97,9 @@ Every push to main:
 ## 🧪 Scripts
 
 - `pnpm dev` → start dev environment
-- `pnpm build` → build all packages
+- `pnpm build` → build all packages / apps
+- `pnpm build:packages` → build publishable packages only
+- `pnpm build:storybook` → build static Storybook
 - `pnpm lint` → run oxlint
 - `pnpm format` → run oxfmt
 - `pnpm test` → run tests

@@ -3,6 +3,7 @@
   "scripts": {
     "build": "turbo run build",
     "build:packages": "turbo run build --filter=./packages/*",
+    "build:storybook": "turbo run build --filter=polaris-storybook",
     "dev": "turbo run dev",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
