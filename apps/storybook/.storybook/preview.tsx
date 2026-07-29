@@ -24,7 +24,7 @@ const preview: Preview = {
   parameters: {
     options: {
       storySort: {
-        order: ['Overview', ['Installation'], 'Foundations', 'Components']
+        order: ['Overview', ['Installation', 'Contributing'], 'Foundations', 'Components']
       }
     },
 
