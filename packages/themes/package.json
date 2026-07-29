@@ -1,6 +1,6 @@
 {
   "name": "@polaris-kit/themes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Theme engine and light/dark themes for Polaris UI, mapping design tokens to CSS variables.",
   "keywords": [
     "css-variables",
@@ -10,7 +10,7 @@
     "theming",
     "ui"
   ],
-  "homepage": "https://github.com/polaris-kit/polaris-kit#readme",
+  "homepage": "https://main--6a6a03885409ae6257b04aac.chromatic.com",
   "bugs": {
     "url": "https://github.com/polaris-kit/polaris-kit/issues"
   },

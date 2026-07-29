@@ -1,6 +1,6 @@
 {
   "name": "@polaris-kit/react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Modern, composable and accessible React component library for Polaris UI.",
   "keywords": [
     "accessible",
@@ -11,7 +11,7 @@
     "react",
     "ui"
   ],
-  "homepage": "https://github.com/polaris-kit/polaris-kit#readme",
+  "homepage": "https://main--6a6a03885409ae6257b04aac.chromatic.com",
   "bugs": {
     "url": "https://github.com/polaris-kit/polaris-kit/issues"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@polaris-kit/tokens",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Design tokens for Polaris UI — colors, spacing, radius, typography, shadows, motion and more.",
   "keywords": [
     "design-system",
@@ -9,7 +9,7 @@
     "tokens",
     "ui"
   ],
-  "homepage": "https://github.com/polaris-kit/polaris-kit#readme",
+  "homepage": "https://main--6a6a03885409ae6257b04aac.chromatic.com",
   "bugs": {
     "url": "https://github.com/polaris-kit/polaris-kit/issues"
   },

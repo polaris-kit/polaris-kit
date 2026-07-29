@@ -4,6 +4,9 @@ Modern, composable and accessible React component library for **Polaris UI**.
 
 [![npm version](https://img.shields.io/npm/v/@polaris-kit/react.svg)](https://www.npmjs.com/package/@polaris-kit/react)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+[![Storybook](https://img.shields.io/badge/storybook-docs-ff4785.svg)](https://main--6a6a03885409ae6257b04aac.chromatic.com)
+
+📚 **[Live documentation (Storybook)](https://main--6a6a03885409ae6257b04aac.chromatic.com)**
 
 ## Installation
 
@@ -35,6 +38,10 @@ export function App() {
 - `Icon`
 - `Text`
 - `Heading`
+
+## Documentation
+
+Browse components, foundations and usage guides in the [Storybook](https://main--6a6a03885409ae6257b04aac.chromatic.com).
 
 ## License
 
