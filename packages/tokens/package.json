@@ -1,6 +1,6 @@
 {
   "name": "@polaris-kit/tokens",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Design tokens for Polaris UI — colors, spacing, radius, typography, shadows, motion and more.",
   "keywords": [
     "design-system",
