@@ -94,7 +94,7 @@ importers:
         specifier: 4.1.9
         version: 4.1.9(@vitest/browser@4.1.9)(vitest@4.1.9)
       chromatic:
-        specifier: ^18.1.0
+        specifier: 18.1.0
         version: 18.1.0
       oxlint:
         specifier: 1.71.0
