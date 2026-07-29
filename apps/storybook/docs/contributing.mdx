@@ -1,5 +1,191 @@
 import { Meta, Source } from '@storybook/addon-docs/blocks'
+import { useState } from 'react'
 
 <Meta title="Overview/Contributing" />
 
 # Contributing
+
+Thanks for helping improve **Polaris Kit**. This guide covers how to work in
+the monorepo — local setup, branch workflow, commits, Changesets and how
+releases reach npm.
+
+export function CodeTabs({ options, render, language = 'bash' }) {
+  const [active, setActive] = useState(options[0])
+
+  return (
+    <div style={{ marginBottom: 24 }}>
+      <div style={{ display: 'flex', gap: 4, marginBottom: 8 }}>
+        {options.map((option) => (
+          <button
+            key={option}
+            onClick={() => setActive(option)}
+            style={{
+              fontSize: 12,
+              padding: '6px 12px',
+              borderRadius: 6,
+              border: '1px solid var(--polaris-docs-border)',
+              background:
+                active === option
+                  ? 'var(--polaris-docs-accent, #3B82F6)'
+                  : 'var(--polaris-docs-card-bg)',
+              color:
+                active === option ? 'var(--polaris-docs-card-bg)' : 'var(--polaris-docs-text)',
+              cursor: 'pointer',
+              fontWeight: active === option ? 600 : 400
+            }}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+      <Source dark={true} code={render(active)} language={language} />
+    </div>
+  )
+}
+
+## Requirements
+
+- **Node.js** 18+ (CI runs on Node 22)
+- **pnpm** 9 — pinned via `packageManager` in the root `package.json`
+
+Enable Corepack once, then install from the repo root:
+
+<Source dark language="bash" code={`corepack enable
+pnpm install`} />
+
+## Project layout
+
+```
+polaris-kit/
+├── apps/
+│   └── storybook/          # Docs & component playground
+├── packages/
+│   ├── react/              # @polaris-kit/react — components
+│   ├── tokens/             # @polaris-kit/tokens — design tokens
+│   └── themes/             # @polaris-kit/themes — theme engine
+├── .changeset/             # Pending release notes
+└── .github/workflows/      # CI, Chromatic, Release
+```
+
+## Development
+
+Start Storybook and package watchers:
+
+<Source dark language="bash" code={`pnpm dev`} />
+
+Or open only the docs app:
+
+<Source
+  dark
+  language="bash"
+  code={`pnpm --filter polaris-storybook dev`}
+/>
+
+Useful scripts from the root:
+
+| Script | What it does |
+| --- | --- |
+| `pnpm lint` | Oxlint across the repo |
+| `pnpm check-types` | Typecheck (builds workspace deps first) |
+| `pnpm build:packages` | Build publishable packages |
+| `pnpm build:storybook` | Static Storybook build |
+| `pnpm changeset` | Create a changeset for your PR |
+
+## Branch workflow
+
+`main` is the protected default branch. Work happens on short-lived branches
+and lands through pull requests.
+
+1. Create a branch from an up-to-date `main`:
+
+<Source
+  dark
+  language="bash"
+  code={`git checkout main
+git pull origin main
+git checkout -b feat/my-change`}
+/>
+
+2. Prefer prefixes that describe intent:
+   - `feat/` — new component or capability
+   - `fix/` — bug fix
+   - `docs/` — documentation only
+   - `chore/` — tooling, CI, deps
+   - `refactor/` — internal change with no API shift
+
+3. Open a pull request against `main`. CI runs lint, typecheck and package
+   builds; Chromatic publishes a preview of Storybook for the PR.
+
+Do **not** commit directly to `main` if branch protection is enabled.
+
+## Commits
+
+We use **Conventional Commits**, enforced by Commitlint on `commit-msg`.
+
+<Source
+  dark
+  language="bash"
+  code={`feat(react): add Button loading state
+fix(themes): correct dark background token
+docs(storybook): document contributing flow
+chore(ci): require status checks on main`}
+/>
+
+Common types: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `ci`,
+`style`, `perf`.
+
+Pre-commit (Husky + lint-staged) runs Oxlint / Oxfmt on staged files.
+
+## Changesets (required for releases)
+
+Any PR that should change a published package version **must** include a
+changeset. This is how we version and publish to npm — do not bump
+`package.json` versions by hand.
+
+<Source dark language="bash" code={`pnpm changeset`} />
+
+Pick the packages that changed (`@polaris-kit/react`, `@polaris-kit/tokens`,
+`@polaris-kit/themes`), the bump type (`patch` / `minor` / `major`), and a
+short summary for the changelog.
+
+The three publishable packages are in a **fixed** version group — they
+release together on the same version.
+
+### What happens after merge
+
+1. Push / merge to `main` with pending changesets.
+2. The **Release** workflow opens (or updates) a `chore: version packages` PR.
+3. Merging that PR bumps versions, writes `CHANGELOG.md` files and publishes
+   to **npmjs** (`@polaris-kit/*`).
+
+You need merge access (and the repo secrets `NPM_TOKEN` / Chromatic token on
+the Actions side) for the automated publish to succeed — contributors only
+need to add the changeset file in the feature PR.
+
+## Adding a component
+
+1. Implement under `packages/react/src/components/<name>/`.
+2. Export it from `packages/react/src/index.ts`.
+3. Add a `*.stories.tsx` next to the component (picked up by Storybook).
+4. Use design tokens / CSS variables from the theme — avoid hard-coded colors
+   when a token already exists.
+5. Run `pnpm changeset` and select `@polaris-kit/react` (and others if needed).
+
+## Pull request checklist
+
+- [ ] Branch is rebased / updated with `main`
+- [ ] Lint and types pass locally (`pnpm lint` · `pnpm check-types`)
+- [ ] Stories cover new or changed UI
+- [ ] A changeset is included when packages change
+- [ ] Commit messages follow Conventional Commits
+
+## Documentation
+
+- Story docs live in `apps/storybook/docs/` (MDX) and in package stories.
+- Live docs are published to Chromatic on every push to `main`:
+  [Storybook](https://main--6a6a03885409ae6257b04aac.chromatic.com)
+
+## License
+
+By contributing, you agree that your contributions are licensed under the
+same MIT license as the project.
