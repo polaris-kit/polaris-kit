@@ -30,6 +30,10 @@ jobs:
           cache: "pnpm"
           registry-url: "https://registry.npmjs.org"
 
+      # Trusted Publishing (OIDC) requires npm CLI >= 11.5.1
+      - name: Upgrade npm
+        run: npm install -g npm@latest
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
@@ -45,5 +49,4 @@ jobs:
           title: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # No NPM_TOKEN / NODE_AUTH_TOKEN — publish via npm Trusted Publishing (OIDC)
